@@ -1,0 +1,22 @@
+api_version = "2024-01"
+
+[[extensions]]
+handle = "discount-products"
+name = "t:name"
+description = "t:description"
+type = "function"
+[access_scopes]
+scopes = "write_products, write_discounts"
+
+  [[extensions.targeting]]
+  target = "purchase.product-discount.run"
+  input_query = "src/run.graphql"
+  export = "run"
+
+  [extensions.build]
+  command = ""
+  path = "dist/function.wasm"
+
+  [extensions.ui.paths]
+  create = "/"
+  details = "/"
